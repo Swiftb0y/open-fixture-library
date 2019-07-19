@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "broken-link-checker": "beaulac/broken-link-checker#886288db1b844143da5fee8583097bdf8ecbea04",
+    "d3-node": "^2.2.0",
     "diff": "^4.0.1",
     "dir-compare": "^1.7.1",
     "disparity": "^2.0.0",
