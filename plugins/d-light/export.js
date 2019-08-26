@@ -13,10 +13,11 @@ module.exports.version = `0.2.0`;
  * @param {array.<Fixture>} fixtures An array of Fixture objects.
  * @param {object} options Global options, including:
  * @param {string} options.baseDir Absolute path to OFL's root directory.
- * @param {Date|null} options.date The current time.
+ * @param {Date} options.date The current time.
+ * @param {string|undefined} options.displayedPluginVersion Replacement for module.exports.version if the plugin version is used in export.
  * @returns {Promise.<array.<object>, Error>} The generated files.
 */
-module.exports.export = function exportDLight(fixtures, options) {
+module.exports.export = async function exportDLight(fixtures, options) {
   const deviceFiles = [];
 
   for (const fixture of fixtures) {
@@ -27,7 +28,7 @@ module.exports.export = function exportDLight(fixtures, options) {
         .element({
           Device: {
             'OFL_Export': {
-              '@id': module.exports.version,
+              '@id': options.displayedPluginVersion || module.exports.version,
               '#text': fixture.url
             },
             frames: {
@@ -59,7 +60,7 @@ module.exports.export = function exportDLight(fixtures, options) {
     }
   }
 
-  return Promise.resolve(deviceFiles);
+  return deviceFiles;
 };
 
 /**
